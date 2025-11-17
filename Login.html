@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vinda de volta - Bera Alfaiataria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .left-section {
+            flex: 1;
+            background-color: #FAF8F6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4A3828;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #8B6F47;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .logo-text {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #2C2C2C;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #4A4A4A;
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            background-color: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8B6F47;
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        .password-input {
+            position: relative;
+        }
+
+        .password-input input {
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 13px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #8B6F47;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #8B6F47;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover {
+            background-color: #6F5838;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .signup-link a {
+            color: #8B6F47;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .right-section {
+            flex: 1;
+            background: linear-gradient(135deg, #F5F0EB 0%, #E8DDD5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .model-image {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 968px) {
+            body {
+                flex-direction: column;
+            }
+
+            .right-section {
+                display: none;
+            }
+
+            .left-section {
+                padding: 40px 20px;
+            }
+
+            .logo {
+                left: 20px;
+                top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <a href="Home.html" class="logo">
+            <div class="logo-icon"></div>
+            <span class="logo-text">Bera Alfaiataria</span>
+        </a>
+
+        <div class="form-container">
+            <h1>Bem-vinda de volta</h1>
+            <p class="subtitle">Acesse sua conta personalizada</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail ou Usuário</label>
+                    <input type="text" id="email" placeholder="Digite seu e-mail ou usuário" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <div class="password-input">
+                        <input type="password" id="password" placeholder="Digite sua senha" required>
+                        <span class="toggle-password" onclick="togglePassword()">👁</span>
+                    </div>
+                </div>
+
+                <div class="remember-forgot">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <span>Lembrar-me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <span>✨</span>
+                    Entrar
+                </button>
+            </form>
+
+            <div class="signup-link">
+                Não tem uma conta? <a href="Criarconta.html">Cadastre-se</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="right-section">
+        <img src="https://i.ibb.co/Nct74xJ/retrato-da-moda-da-jovem-mulher-elegante.jpg" alt="Modelo Fashion" class="model-image">
+    </div>
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById('password');
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login realizado com sucesso!');
+            window.location.href = 'Home.html';
+        });
+    </script>
+</body>
+</html>

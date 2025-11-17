@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Bera Alfaiataria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FAF8F6;
+            color: #333;
+        }
+
+        header {
+            background-color: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            color: #2C2C2C;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #8B6F47;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #8B6F47;
+        }
+
+        .btn-login {
+            background-color: #8B6F47;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #6F5838;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #2C2C2C;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .appointment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .form-section h2 {
+            font-size: 24px;
+            color: #2C2C2C;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .form-section > p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #4A4A4A;
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: border-color 0.3s;
+            background-color: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #8B6F47;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #999;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .service-options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .service-card {
+            padding: 16px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .service-card:hover {
+            border-color: #8B6F47;
+        }
+
+        .service-card.selected {
+            border-color: #8B6F47;
+            background-color: #FFF9F3;
+        }
+
+        .service-card h3 {
+            font-size: 16px;
+            color: #2C2C2C;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .service-card .price {
+            font-size: 15px;
+            color: #8B6F47;
+            font-weight: 600;
+        }
+
+        .date-time-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-slot {
+            padding: 10px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .time-slot:hover {
+            border-color: #8B6F47;
+        }
+
+        .time-slot.selected {
+            background-color: #8B6F47;
+            color: white;
+            border-color: #8B6F47;
+        }
+
+        .time-slot.unavailable {
+            background-color: #F5F5F5;
+            color: #CCC;
+            cursor: not-allowed;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #8B6F47;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #6F5838;
+        }
+
+        .summary-section {
+            background-color: #FFF9F3;
+            padding: 30px;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        .summary-section h3 {
+            font-size: 20px;
+            color: #2C2C2C;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .summary-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .summary-item h4 {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .summary-item p {
+            font-size: 15px;
+            color: #2C2C2C;
+            font-weight: 500;
+        }
+
+        .total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #E0E0E0;
+        }
+
+        .total h4 {
+            font-size: 16px;
+            color: #2C2C2C;
+            margin-bottom: 5px;
+        }
+
+        .total p {
+            font-size: 24px;
+            color: #8B6F47;
+            font-weight: 700;
+        }
+
+        footer {
+            background-color: white;
+            padding: 25px 60px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #8B6F47;
+        }
+
+        @media (max-width: 968px) {
+            header, footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            nav {
+                gap: 20px;
+                font-size: 13px;
+            }
+
+            .appointment-grid {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .date-time-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Home.html" class="logo">
+            <div class="logo-icon"></div>
+            <span>Bera Alfaiataria</span>
+        </a>
+        <nav>
+            <a href="Home.html">Início</a>
+            <a href="Home.html#colecoes">Coleções</a>
+            <a href="Home.html#sobre">Sobre</a>
+            <a href="Contato.html">Contato</a>
+            <a href="Ajuda.html">Ajuda</a>
+            <a href="#" class="active">Agendamento</a>
+            <a href="Login.html" class="btn-login">Entrar</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Agende</h1>
+        <p>Reserve um horário exclusivo para conhecer nossa coleção de ternos femininos e criar sua peça sob medida.</p>
+    </div>
+
+    <div class="container">
+        <div class="appointment-grid">
+            <div class="form-section">
+                <h2>Informações Pessoais</h2>
+                <p>Preencha seus dados para confirmarmos seu agendamento.</p>
+
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" placeholder="Digite seu nome completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="seuemail@exemplo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="tel" id="phone" placeholder="(11) 99999-9999" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Selecione o Serviço</label>
+                        <div class="service-options">
+                            <div class="service-card" onclick="selectService(this, 'Consultoria de Estilo', 'R$ 150,00')">
+                                <h3>Consultoria de Estilo</h3>
+                                <p>45 minutos - Análise de estilo e definição de modelagem</p>
+                                <span class="price">R$ 150,00</span>
+                            </div>
+                            <div class="service-card" onclick="selectService(this, 'Prova de Terno', 'R$ 0,00')">
+                                <h3>Prova de Terno</h3>
+                                <p>30 minutos - Experimentar peças da coleção</p>
+                                <span class="price">Gratuito</span>
+                            </div>
+                            <div class="service-card" onclick="selectService(this, 'Medição Personalizada', 'R$ 200,00')">
+                                <h3>Medição Personalizada</h3>
+                                <p>60 minutos - Tirar medidas para peça sob medida</p>
+                                <span class="price">R$ 200,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data e Horário</label>
+                        <div class="date-time-grid">
+                            <input type="date" id="date" required>
+                            <select id="period" required>
+                                <option value="">Período</option>
+                                <option value="morning">Manhã</option>
+                                <option value="afternoon">Tarde</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Horários Disponíveis</label>
+                        <div class="time-slots">
+                            <div class="time-slot" onclick="selectTime(this)">09:00</div>
+                            <div class="time-slot" onclick="selectTime(this)">10:00</div>
+                            <div class="time-slot unavailable">11:00</div>
+                            <div class="time-slot" onclick="selectTime(this)">14:00</div>
+                            <div class="time-slot" onclick="selectTime(this)">15:00</div>
+                            <div class="time-slot" onclick="selectTime(this)">16:00</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Observações (opcional)</label>
+                        <textarea id="notes" placeholder="Alguma preferência ou informação adicional?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Confirmar Agendamento</button>
+                </form>
+            </div>
+
+            <div class="summary-section">
+                <h3>Resumo do Agendamento</h3>
+                
+                <div class="summary-item">
+                    <h4>Serviço Selecionado</h4>
+                    <p id="summaryService">Nenhum serviço selecionado</p>
+                </div>
+
+                <div class="summary-item">
+                    <h4>Data</h4>
+                    <p id="summaryDate">Selecione uma data</p>
+                </div>
+
+                <div class="summary-item">
+                    <h4>Horário</h4>
+                    <p id="summaryTime">Selecione um horário</p>
+                </div>
+
+                <div class="summary-item">
+                    <h4>Local</h4>
+                    <p>Rua da Alfândega, 123<br>São Paulo - SP</p>
+                </div>
+
+                <div class="total">
+                    <h4>Valor do Serviço</h4>
+                    <p id="summaryPrice">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-text">© 2024 Bera Alfaiataria. Todos os direitos reservados.</div>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Pinterest</a>
+        </div>
+    </footer>
+
+    <script>
+        let selectedServiceName = '';
+        let selectedServicePrice = '';
+        let selectedTimeSlot = '';
+
+        function selectService(element, serviceName, price) {
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            selectedServiceName = serviceName;
+            selectedServicePrice = price;
+            
+            document.getElementById('summaryService').textContent = serviceName;
+            document.getElementById('summaryPrice').textContent = price;
+        }
+
+        function selectTime(element) {
+            if (element.classList.contains('unavailable')) return;
+            
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            selectedTimeSlot = element.textContent;
+            document.getElementById('summaryTime').textContent = element.textContent;
+        }
+
+        document.getElementById('date').addEventListener('change', function() {
+            const date = new Date(this.value + 'T00:00:00');
+            const options = { day: '2-digit', month: 'long', year: 'numeric' };
+            const formattedDate = date.toLocaleDateString('pt-BR', options);
+            document.getElementById('summaryDate').textContent = formattedDate;
+        });
+
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedServiceName) {
+                alert('Por favor, selecione um serviço.');
+                return;
+            }
+            
+            if (!selectedTimeSlot) {
+                alert('Por favor, selecione um horário.');
+                return;
+            }
+            
+            alert('Agendamento confirmado com sucesso! Você receberá uma confirmação por e-mail.');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entre em Contato - Bera Alfaiataria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #FAF8F6;
+            color: #333;
+        }
+
+        header {
+            background-color: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            color: #8B6F47;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #8B6F47;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #8B6F47;
+        }
+
+        .btn-register {
+            background-color: #8B6F47;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-register:hover {
+            background-color: #6F5838;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #2C2C2C;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .info-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .info-section h2 {
+            font-size: 24px;
+            color: #2C2C2C;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .info-section p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            color: #8B6F47;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-content h3 {
+            font-size: 14px;
+            color: #2C2C2C;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-content p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .form-section {
+            background-color: #FFF9F3;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .form-section h2 {
+            font-size: 24px;
+            color: #2C2C2C;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #4A4A4A;
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: border-color 0.3s;
+            background-color: white;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #8B6F47;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #999;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #8B6F47;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #6F5838;
+        }
+
+        footer {
+            background-color: white;
+            padding: 25px 60px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #8B6F47;
+        }
+
+        @media (max-width: 968px) {
+            header, .content, footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            nav {
+                gap: 20px;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Home.html" class="logo">
+            <div class="logo-icon"></div>
+            <span>Bera Alfaiataria</span>
+        </a>
+        <nav>
+            <a href="Home.html">Início</a>
+            <a href="Home.html#colecoes">Coleções</a>
+            <a href="Home.html#sobre">Sobre</a>
+            <a href="Ajuda.html">Ajuda</a>
+            <a href="#" class="active">Contato</a>
+            <a href="Agendamento.html" class="btn-register">Agendar</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Entre em Contato</h1>
+        <p>Estamos à sua disposição para qualquer questão ou agendamento.</p>
+    </div>
+
+    <div class="content">
+        <div class="info-section">
+            <h2>Visite Nossa Alfaiataria</h2>
+            <p>Conheça nosso espaço e veja de perto nossa sofisticação.</p>
+
+            <div class="info-item">
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2c-3.866 0-7 3.134-7 7 0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7zm0 9.5c-1.381 0-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5 2.5 1.119 2.5 2.5-1.119 2.5-2.5 2.5z"/>
+                </svg>
+                <div class="info-content">
+                    <h3>ENDEREÇO</h3>
+                    <p>Rua da Alfândega, 123, São Paulo, SP, 01010-010</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                </svg>
+                <div class="info-content">
+                    <h3>TELEFONE</h3>
+                    <p>+55 (11) 99999-8888</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                </svg>
+                <div class="info-content">
+                    <h3>E-MAIL</h3>
+                    <p>contato@beraalfaiataria.com.br</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                </svg>
+                <div class="info-content">
+                    <h3>HORÁRIO DE FUNCIONAMENTO</h3>
+                    <p>Segunda a Sexta: 09:00 - 18:00<br>Sábado: 10:00 - 14:00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Envie-nos uma Mensagem</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" placeholder="Seu nome completo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Assunto</label>
+                    <input type="text" id="subject" placeholder="Sobre o que gostaria de falar?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" placeholder="Descreva sua dúvida aqui..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-text">© 2024 Bera Alfaiataria. Todos os direitos reservados.</div>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Pinterest</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bera Alfaiataria – Alfaiataria Feminina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Palatino', serif;
+            background: #faf8f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: #ffffff;
+            border-bottom: 1px solid #e8e4df;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: #a67c52;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: normal;
+            color: #333;
+        }
+
+        .navbar nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar nav a:hover,
+        .navbar nav a.active {
+            color: #a67c52;
+        }
+
+        .btn-header {
+            padding: 10px 24px;
+            background: #a67c52;
+            color: white;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-header:hover {
+            background: #8d6544;
+        }
+
+        /* HERO */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 60px;
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            color: #222;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 17px;
+            color: #666;
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        .hero-img {
+            flex: 1;
+            max-width: 550px;
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        /* BOTÃO */
+        .btn-primary {
+            padding: 15px 40px;
+            background: #a67c52;
+            color: white;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary:hover {
+            background: #8d6544;
+            transform: translateY(-1px);
+        }
+
+        /* COLEÇÕES */
+        .colecoes {
+            padding: 100px 60px;
+            text-align: center;
+            background: #faf8f5;
+        }
+
+        .colecoes h2 {
+            font-size: 38px;
+            color: #222;
+            margin-bottom: 60px;
+            font-weight: 400;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .item {
+            text-align: center;
+            background: white;
+            border-radius: 2px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .item:hover {
+            transform: translateY(-5px);
+        }
+
+        .grid img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .grid p {
+            padding: 25px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* SEÇÃO SOBRE */
+        .sobre {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 60px;
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+
+        .sobre-texto {
+            flex: 1;
+        }
+
+        .sobre-texto h2 {
+            font-size: 38px;
+            color: #222;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .sobre-texto p {
+            font-size: 17px;
+            color: #666;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .sobre-img {
+            flex: 1;
+            max-width: 550px;
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 40px 60px;
+            text-align: center;
+            border-top: 1px solid #e8e4df;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #a67c52;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px 30px;
+            }
+
+            .navbar nav {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero, .sobre {
+                flex-direction: column;
+                text-align: center;
+                padding: 60px 30px;
+            }
+
+            .hero-text h1, .sobre-texto h2 {
+                font-size: 36px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-text h1, .sobre-texto h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo-section">
+        <div class="logo-icon"></div>
+        <div class="logo">Bera Alfaiataria</div>
+    </div>
+    <nav>
+        <a href="Home.html" class="active">Início</a>
+        <a href="#colecoes">Coleções</a>
+        <a href="#sobre">Sobre</a>
+        <a href="Contato.html">Entre em Contato</a>
+        <a href="Ajuda.html">Ajuda</a>
+    </nav>
+    <a href="Agendamento.html" class="btn-header">Agendar</a>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-text">
+        <h1>Alfaiataria Feminina Feita Para Mulheres Sofisticadas</h1>
+        <p>Peças sob medida com caimento impecável, unindo elegância e força feminina. Cada criação é pensada para vestir mulheres confiantes e marcantes.</p>
+        <button class="btn-primary" onclick="window.location.href='#colecoes'">Conhecer Coleção</button>
+    </div>
+
+    <img 
+        src="https://i.ibb.co/vvdMy9HF/bela-moda-mulher-posando-com-elegante-terno-1.jpg" 
+        alt="Alfaiataria feminina elegante"
+        class="hero-img"
+    >
+</section>
+
+<section id="colecoes" class="colecoes">
+    <h2>Nossas Peças</h2>
+
+    <div class="grid">
+        <div class="item">
+            <img src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?q=80&w=1080" alt="Ternos Femininos Preto">
+            <p>Ternos Femininos (Preto)</p>
+        </div>
+
+        <div class="item">
+            <img src="https://i.ibb.co/xq0S5qrk/bela-moda-mulher-posando-com-elegante-terno.jpg" alt="Alfaiataria Branca">
+            <p>Alfaiataria Branca</p>
+        </div>
+
+        <div class="item">
+            <img src="https://i.ibb.co/Nct74xJ/retrato-da-moda-da-jovem-mulher-elegante.jpg" alt="Dourado Elegante">
+            <p>Dourado Elegante</p>
+        </div>
+    </div>
+</section>
+
+<section id="sobre" class="sobre">
+    <div class="sobre-texto">
+        <h2>Sobre o Atelier</h2>
+        <p>
+            Criamos alfaiataria feminina com técnicas tradicionais e acabamento impecável.
+            Cada peça é desenvolvida com propósito: vestir mulheres confiantes, elegantes e marcantes.
+        </p>
+        <p>
+            Nossa experiência de mais de 15 anos no mercado garante qualidade superior em cada detalhe,
+            desde a escolha dos tecidos até o ajuste final.
+        </p>
+        <button class="btn-primary" onclick="window.location.href='Agendamento.html'">Agendar Atendimento</button>
+    </div>
+
+    <img 
+        src="https://i.ibb.co/fV5VLBZH/retrato-da-moda-da-jovem-mulher-elegante-1.jpg" 
+        alt="Atelier de alfaiataria"
+        class="sobre-img"
+    >
+</section>
+
+<footer class="footer">
+    <div class="footer-text">© 2024 Bera Alfaiataria. Todos os direitos reservados.</div>
+    <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+    </div>
+</footer>
+
+</body>
+</html>

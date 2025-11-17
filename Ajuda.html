@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precisa de Ajuda? - Bera Alfaiataria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: #333;
+        }
+
+        header {
+            background-color: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: #2C2C2C;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #8B6F47;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        nav {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #8B6F47;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #2C2C2C;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #8B6F47;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            color: #666;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            border-color: #8B6F47;
+            color: #8B6F47;
+        }
+
+        .tab.active {
+            background-color: #8B6F47;
+            color: white;
+            border-color: #8B6F47;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .faq-item {
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #FAFAFA;
+        }
+
+        .faq-question h3 {
+            font-size: 16px;
+            color: #2C2C2C;
+            font-weight: 500;
+        }
+
+        .faq-icon {
+            color: #8B6F47;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #FAFAFA;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            background-color: #FFF9F3;
+            padding: 50px 20px;
+            text-align: center;
+            margin: 60px auto 0;
+            max-width: 800px;
+            border-radius: 12px;
+        }
+
+        .cta-section h2 {
+            font-size: 28px;
+            color: #2C2C2C;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .cta-section p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: #8B6F47;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #6F5838;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #8B6F47;
+            padding: 12px 30px;
+            border-radius: 6px;
+            border: 1px solid #8B6F47;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #8B6F47;
+            color: white;
+        }
+
+        footer {
+            background-color: white;
+            padding: 40px 60px;
+            margin-top: 80px;
+            border-top: 1px solid #E0E0E0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: #2C2C2C;
+            font-weight: 600;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #8B6F47;
+        }
+
+        .footer-text {
+            color: #999;
+            font-size: 12px;
+        }
+
+        @media (max-width: 968px) {
+            header, footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            nav {
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .cta-section {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Home.html" class="logo">
+            <div class="logo-icon"></div>
+            <span>Bera Alfaiataria</span>
+        </a>
+        <nav>
+            <a href="Home.html">Início</a>
+            <a href="Home.html#colecoes">Coleções</a>
+            <a href="Home.html#sobre">Sobre</a>
+            <a href="Contato.html">Contato</a>
+            <a href="#" class="active">Ajuda</a>
+        </nav>
+        <div class="header-icons">
+            <a href="Login.html" class="icon-btn">👤</a>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Precisa de Ajuda?</h1>
+        <p>Encontre respostas para suas dúvidas mais comuns ou entre em contato com nossa equipe.</p>
+    </div>
+
+    <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Procure por palavras-chave">
+    </div>
+
+    <div class="tabs">
+        <button class="tab active">Pedidos e Pagamento</button>
+        <button class="tab">Envio e Entrega</button>
+        <button class="tab">Trocas e Devolução</button>
+        <button class="tab">Nossas Peças</button>
+        <button class="tab">Conta e Cadastro</button>
+    </div>
+
+    <div class="faq-container">
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+                <h3>Quais métodos de pagamento são aceitos?</h3>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Aceitamos todas as principais cartões de crédito (Visa, MasterCard e Amex), Pix, boleto bancário. O pagamento só pode ser feito por um método, não é possível dividir.</p>
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+                <h3>Como posso rastrear meu pedido?</h3>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Após a confirmação do seu pedido, você receberá um e-mail com o código de rastreamento. Você também pode acompanhar seu pedido através da sua conta no site.</p>
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+                <h3>Qual é a política de trocas e devoluções?</h3>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Você tem até 30 dias após o recebimento do produto para solicitar troca ou devolução. O produto deve estar sem uso, com todas as etiquetas originais.</p>
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+                <h3>Como cuidar das minhas peças de alfaiataria?</h3>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Recomendamos lavagem a seco para manter a qualidade e o caimento das peças. Guarde em cabides apropriados e evite exposição direta ao sol.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Não encontrou sua resposta?</h2>
+        <p>Nossa equipe de suporte está sempre pronta para ajudar. Entre em contato conosco através do e-mail ou WhatsApp.</p>
+        <div class="cta-buttons">
+            <a href="Contato.html" class="btn-primary">✉️ E-mail</a>
+            <a href="https://wa.me/5511999998888" class="btn-secondary" target="_blank">📱 WhatsApp</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <div class="logo-icon"></div>
+            <span>Bera Alfaiataria</span>
+        </div>
+        <div class="footer-links">
+            <a href="Home.html">Início</a>
+            <a href="Contato.html">Contato</a>
+            <a href="Agendamento.html">Agendamento</a>
+            <a href="#">Indique</a>
+        </div>
+        <p class="footer-text">© 2024 Bera Alfaiataria. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const wasActive = element.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (!wasActive) {
+                element.classList.add('active');
+            }
+        }
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
